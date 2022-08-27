@@ -1,0 +1,19 @@
+<div class="well">
+  <h2>Enter a zipcode and a country name:</h2>
+  <div class="inputContainer">
+    <input type="text" #zipcode placeholder="Zipcode" class="form-control space">
+    <app-dropdown (itemSelectedEmitter)="setCountry($event)" [items]="(zipCodeEntryService.getCountries() | async) || []"></app-dropdown>
+  </div>
+  <br>
+  <app-button (btnClickEmitter)="addLocation(zipcode.value, country)" [color]="getColor()">
+    <ng-container *ngIf="(buttonState | async) === ButtonState.Default">
+      Add location
+    </ng-container>
+    <ng-container *ngIf="(buttonState | async) === ButtonState.Working">
+      Working
+    </ng-container>
+    <ng-container *ngIf="(buttonState | async) === ButtonState.Done">
+      ✔ Done
+    </ng-container>
+  </app-button>
+</div>

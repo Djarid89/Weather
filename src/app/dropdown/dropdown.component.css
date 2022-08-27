@@ -1,0 +1,31 @@
+.items {
+  position: absolute;
+  max-height: 300px;
+  height: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 300px;
+  overflow: auto;
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: 0 6px 8px rgb(102 175 233 / 60%);
+  padding: 0;
+}
+
+.item {
+  padding: 6px 12px;
+}
+
+.item:hover {
+  background-color: #ddd;
+}
+
+.inputOpen {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

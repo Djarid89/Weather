@@ -1,0 +1,6 @@
+<input  type="text" class="form-control" [class.inputOpen]="this.filteredItems.length" placeholder="Search..." (focus)="filterItems()" [ngModel]="text" (ngModelChange)="filterItems($event)">
+<div *ngIf="this.filteredItems.length" class="items form-control">
+  <div class="item" *ngFor="let item of filteredItems" (click)="selectCountry(item)">
+    <span [innerHTML]="item.name | bold:text"></span>
+  </div>
+</div>

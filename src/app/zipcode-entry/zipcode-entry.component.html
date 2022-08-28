@@ -5,14 +5,14 @@
     <app-dropdown (itemSelectedEmitter)="setCountry($event)" [items]="(zipCodeEntryService.getCountries() | async) || []"></app-dropdown>
   </div>
   <br>
-  <app-button (btnClickEmitter)="addLocation(zipcode.value, country)" [color]="getColor()">
-    <ng-container *ngIf="(buttonState | async) === ButtonState.Default">
+  <app-button (btnClickEmitter)="addLocation(zipcode.value, country)" [color]="getColor()" [disableBtn]="(buttonState$ | async) !== ButtonState.Default">
+    <ng-container *ngIf="(buttonState$ | async) === ButtonState.Default">
       Add location
     </ng-container>
-    <ng-container *ngIf="(buttonState | async) === ButtonState.Working">
+    <ng-container *ngIf="(buttonState$ | async) === ButtonState.Working">
       Working
     </ng-container>
-    <ng-container *ngIf="(buttonState | async) === ButtonState.Done">
+    <ng-container *ngIf="(buttonState$ | async) === ButtonState.Done">
       ✔ Done
     </ng-container>
   </app-button>

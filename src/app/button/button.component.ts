@@ -13,6 +13,7 @@ export enum ButtonColor {
 })
 export class ButtonComponent {
   @Input() color!: ButtonColor;
+  @Input() disableBtn = false;
   @Output() btnClickEmitter = new EventEmitter<void>()
 
   btnClick(): void {

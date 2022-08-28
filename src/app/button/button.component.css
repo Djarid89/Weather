@@ -5,3 +5,11 @@
 .done {
   background-color: rgb(100, 177, 12);
 }
+
+.working:hover {
+  background-color: rgb(255, 166, 0);
+}
+
+.done:hover {
+  background-color: rgb(100, 177, 12);
+}

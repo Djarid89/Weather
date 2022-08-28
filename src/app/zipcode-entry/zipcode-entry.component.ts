@@ -20,7 +20,7 @@ enum ButtonState {
   styleUrls: ['./zipcode-entry.component.css']
 })
 export class ZipcodeEntryComponent {
-  buttonState = new BehaviorSubject<ButtonState>(ButtonState.Default);
+  buttonState$ = new BehaviorSubject<ButtonState>(ButtonState.Default);
   ButtonState = ButtonState;
   country = '';
 
@@ -46,23 +46,23 @@ export class ZipcodeEntryComponent {
       return;
     }
 
-    this.buttonState.next(ButtonState.Working);
+    this.buttonState$.next(ButtonState.Working);
     this.weatherService.addCurrentConditions(zipCountry);
     this.shared.saveZipCode$.pipe(first()).subscribe({
       next: (zipCode: string) => {
         if(zipCode) {
           this.locationService.addLocation(zipCountry);
         }
-        this.buttonState.next(ButtonState.Done);
-        setTimeout(() => this.buttonState.next(ButtonState.Default), 500);
+        this.buttonState$.next(ButtonState.Done);
+        setTimeout(() => this.buttonState$.next(ButtonState.Default), 500);
       }
     })
   }
 
   getColor(): ButtonColor {
-    if(this.buttonState.getValue() === ButtonState.Working) {
+    if(this.buttonState$.getValue() === ButtonState.Working) {
       return ButtonColor.Working;
-    } else if(this.buttonState.getValue() === ButtonState.Done) {
+    } else if(this.buttonState$.getValue() === ButtonState.Done) {
       return ButtonColor.Done;
     } else {
       return ButtonColor.Default;

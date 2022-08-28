@@ -34,6 +34,7 @@ export class DropdownComponent {
 
   filterItems(text?: string): void {
     this.text = text || '';
+    this.itemSelectedEmitter.emit();
     this.filteredItems = text ? this.items?.filter((item: CodeName) => item.name.toLowerCase().includes(this.text.toLowerCase())) || [] : [...this.items];
   }
 }

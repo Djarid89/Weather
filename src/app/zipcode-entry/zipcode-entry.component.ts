@@ -42,7 +42,7 @@ export class ZipcodeEntryComponent {
     }
 
     if(this.weatherService.isConditionAlreadyPresent(zipCountry)) {
-      Swal.fire({ position: 'center', icon: 'error', title: `Zip code ${zipCountry.zip} already present`, timer: 2000 });
+      Swal.fire({ position: 'center', icon: 'error', title: `Already present`, timer: 2000 });
       return;
     }
 

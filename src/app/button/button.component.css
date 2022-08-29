@@ -1,15 +1,9 @@
-.working {
-  background-color: rgb(255, 166, 0);
-}
-
-.done {
-  background-color: rgb(100, 177, 12);
-}
-
+.working,
 .working:hover {
-  background-color: rgb(255, 166, 0);
+  background-color: #7ba9d0;
 }
 
+.done,
 .done:hover {
-  background-color: rgb(100, 177, 12);
+  background-color: #198754;
 }

@@ -5,5 +5,6 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
+  startAddLocation$ = new Subject<void>();
   saveZipCode$ = new Subject<string>();
 }

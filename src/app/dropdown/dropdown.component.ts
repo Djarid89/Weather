@@ -1,11 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CodeName } from '../zipcode-entry.service';
 
-export enum ButtonColor {
-  Working = 'working',
-  Done = 'done'
-}
-
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',

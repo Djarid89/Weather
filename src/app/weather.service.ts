@@ -33,6 +33,7 @@ export class WeatherService {
     }
     // Here we make a request to get the current conditions data from the API. Note the use of backticks and an expression to insert the zipcode
     const url = `${WeatherService.URL}/weather?zip=${zipCountry.zip},${zipCountry.countryName}&units=imperial&APPID=${WeatherService.APPID}`;
+    this.shared.startAddLocation$.next();
     this.http.get<WeatherData>(url).subscribe({
       next: (data: WeatherData) => {
         this.currentConditions.push({zip: zipCountry.zip, data: data});

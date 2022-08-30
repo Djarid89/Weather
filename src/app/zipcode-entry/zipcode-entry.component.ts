@@ -4,7 +4,6 @@ import { WeatherService } from '../weather.service';
 import { SharedService } from '../shared.service';
 import { first } from 'rxjs/operators';
 import { ZipCodeEntryService } from '../zipcode-entry.service';
-import Swal from 'sweetalert2';
 import { ButtonState } from '../button/button.component';
 
 @Component({
@@ -35,21 +34,6 @@ export class ZipcodeEntryComponent implements AfterViewInit {
 
   addLocation(zip: string, countryName: string) {
     const zipCountry = { zip, countryName }
-    if(!zipCountry.zip) {
-      Swal.fire({ position: 'center', icon: 'error', title: `Zip code missing`, timer: 2000 });
-      return;
-    }
-
-    if(!zipCountry.countryName) {
-      Swal.fire({ position: 'center', icon: 'error', title: `Country name code missing`, timer: 2000 });
-      return;
-    }
-
-    if(this.weatherService.isConditionAlreadyPresent(zipCountry)) {
-      Swal.fire({ position: 'center', icon: 'error', title: `Already present`, timer: 2000 });
-      return;
-    }
-
     this.weatherService.addCurrentConditions(zipCountry);
     this.shared.saveZipCode$.pipe(first()).subscribe({
       next: (zipCode: string) => {

@@ -23,14 +23,21 @@ export class WeatherService {
   constructor(private readonly http: HttpClient, private readonly shared: SharedService) { }
 
   addCurrentConditions(zipCountry: ZipCountry): void {
-    if(!zipCountry?.zip) {
-      Swal.fire({ position: 'center', icon: 'error', title: `You must insert zip code`, timer: 2000 });
+    if(!zipCountry.zip) {
+      Swal.fire({ position: 'center', icon: 'error', title: `Zip code missing`, timer: 2000 });
       return;
     }
-    if(!zipCountry?.countryName) {
-      Swal.fire({ position: 'center', icon: 'error', title: `You must insert country name`, timer: 2000 });
+
+    if(!zipCountry.countryName) {
+      Swal.fire({ position: 'center', icon: 'error', title: `Country name code missing`, timer: 2000 });
       return;
     }
+
+    if(this.isConditionAlreadyPresent(zipCountry)) {
+      Swal.fire({ position: 'center', icon: 'error', title: `Already present`, timer: 2000 });
+      return;
+    }
+
     // Here we make a request to get the current conditions data from the API. Note the use of backticks and an expression to insert the zipcode
     const url = `${WeatherService.URL}/weather?zip=${zipCountry.zip},${zipCountry.countryName}&units=imperial&APPID=${WeatherService.APPID}`;
     this.shared.startAddLocation$.next();
